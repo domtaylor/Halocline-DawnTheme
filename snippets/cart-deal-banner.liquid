@@ -1,0 +1,73 @@
+ {% assign showhalobanner = false %}
+
+  {% for item in cart.items %}
+    {% if item.product.tags contains 'womens-swimwear' or item.product.tags contains 'mens-swimwear' or item.product.tags contains 'boys-swimwear' or item.product.tags contains 'girls-swimwear' %}
+      {% assign showhalobanner = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% for item in cart.items %}
+    {% if item.product.tags contains 'swimming-goggles' and item.vendor contains 'Halocline' %}
+      {% assign showhalobanner = false %}
+    {% endif %}
+  {% endfor %}
+
+  {% if showhalobanner == true %}
+      {% comment %} <a href="/collections/swimming-goggles/halocline?utm_source=promotions&utm_medium=cartpromobanner&utm_campaign=haloclinegoggles" alt="Halocline Goggles"><img class="cart-deal-banner cart-deal-desktop" src="https://cdn.shopify.com/s/files/1/1767/1963/files/HC_OFFER_823px_CartDesktop.png" alt="Halocline Goggles Offer" /><img class="cart-deal-banner cart-deal-mobile" src="https://cdn.shopify.com/s/files/1/1767/1963/files/HC_CART_MOBILE_5bd90489-4f46-4f26-8eff-f924145ac9d7.png" alt="Halocline Goggles Offer" /></a> {% endcomment %}
+  {% else %}
+   <div id="towel_offer">
+        <a href="/collections/towel-robes/halocline?utm_source=promotions&utm_medium=cartpromobanner&utm_campaign=haloclinegoggles" rel="noopener noreferrer"><img class="cart-deal-banner {% if showhalobanner == true %}cart-deal-last-banner{% endif %} cart-deal-desktop" src="https://cdn.shopify.com/s/files/1/1767/1963/files/TowelOfferDesktop_dae6ecd9-eb7a-4744-ba9c-6485a0fe56d3.png?21359" alt="Towel Offer" /></a>
+        <a href="/collections/towel-robes/halocline?utm_source=promotions&utm_medium=cartpromobanner&utm_campaign=haloclinegoggles" rel="noopener noreferrer"><img class="cart-deal-banner {% if showhalobanner == true %}cart-deal-last-banner{% endif %} cart-deal-desktop" src="https://cdn.shopify.com/s/files/1/1767/1963/files/TowelOfferDesktop_dae6ecd9-eb7a-4744-ba9c-6485a0fe56d3.png?21359"><img class="cart-deal-banner {% if showhalobanner == true %}cart-deal-last-banner{% endif %} cart-deal-mobile" src="https://cdn.shopify.com/s/files/1/1767/1963/files/TowelOfferMobile_8cfbe5d2-97c6-4117-94a7-a10285fd3b18.png?21359" alt="Towel Offer" /></a>
+  {% endif %}
+
+
+
+
+
+  <style type="text/css">
+    #towel_offer {cursor:pointer;}  
+  </style>
+
+  <script type="text/javascript">
+
+  // Add towel to the basket on yes click
+
+  $("#towel_offer").click(function() {
+    console.log ('yes clicked');
+    addbeachbag();
+  });
+
+  function addbeachbag(){
+
+    var addData = {
+      'id':2402152415244,
+      'quantity':1
+    };
+
+    fetch('/cart/add.js', {
+      body: JSON.stringify(addData),
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With':'xmlhttprequest' 
+      },
+      method: 'POST'
+    }).then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      /* we have JSON */
+      console.log(json);
+      location.reload(true);
+    }).catch(function(err) {
+      /* uh oh, we have error. */
+      console.error(err)
+    });
+
+  };
+
+  </script>
+
+
+{% if multistore contains 'beach' %}
+  <a href="/collections/20-off-lepel-lepel-london" alt="10% Off Swiwmear Offer" /><img class="cart-deal-banner cart-deal-mobile" src="https://cdn.shopify.com/s/files/1/1767/1917/files/Cart_MOBILE_bb484d43-5621-4b79-bae2-19659280613f.png" alt="20% Off Lepel Swiwmear Offer" /><img class="cart-deal-banner cart-deal-desktop" src="https://cdn.shopify.com/s/files/1/1767/1917/files/Cart_DESKTOP_71de0089-f260-4afe-9072-457a48f8f3d5.png" alt="20% Off Lepel Swimwear" /></a>
+{% endif %}

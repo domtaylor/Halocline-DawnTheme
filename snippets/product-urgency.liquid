@@ -1,0 +1,136 @@
+{% assign location_id = "product-urgency" %}{% comment %} Set to HTML 'id' of where you'd like the timer to load {% endcomment %}  
+ {% assign use_timer = true %}{% comment %} true = timer will load. false = no timer. {% endcomment %}  
+ {% assign use_stock_counter = true %}  
+ {% assign use_price = true %}  
+ {% assign starting_time = 22 %}{% comment %} How much time will initially load onto the customers clock, in minutes.{% endcomment %}  
+ {% if product.available == false %}  
+ {% comment %} This conditional disables the plugin for products that cannot be purchased. {% endcomment %}  
+ {% assign use_timer = false %}  
+ {% assign use_stock_counter = false %}  
+ {% assign use_price = false %}  
+ {% else %}  
+ {% endif %}  
+ <script type="text/javascript">  
+   Number.prototype.mod = function(n) {  
+   return ((this%n)+n)%n;  
+      };  
+  var starting = new Date();  
+  if (localStorage.getItem("starting_minutes") == "null") {  
+   var starting_minutes = starting.getMinutes() + {{ starting_time }};  
+  localStorage.setItem("starting_minutes",starting_minutes);  
+  } else {  
+    var starting_minutes = localStorage.getItem("starting_minutes");  
+   }  
+  if (localStorage.getItem("starting_seconds") == "null") {  
+  var starting_seconds = starting.getSeconds() + 6;  
+  localStorage.setItem("starting_seconds",starting_seconds);  
+  } else {  
+    var starting_seconds = localStorage.getItem("starting_seconds");  
+   }  
+  if (localStorage.getItem("starting_stock") == "null") {  
+   var starting_stock = Math.ceil(66 + (20 * Math.random()));  
+   localStorage.setItem("starting_stock",starting_stock);  
+   console.log(starting_stock);  
+  } else {  
+   var starting_stock = localStorage.getItem("starting_stock");  
+  }  
+  function updateTimer() {  
+      var time = new Date();  
+   var minutes_left = (starting_minutes - time.getMinutes()).mod(60);  
+   var seconds_left = (starting_seconds - time.getSeconds()).mod(60);  
+   if (minutes_left == 0 && seconds_left == 1) { localStorage.setItem("starting_minutes",null); localStorage.setItem("starting_seconds",null); document.getElementById("time_container").style.display="none"; }  
+   if (seconds_left == 59) {document.getElementById("minutes").style.display = "none";}  
+   document.getElementById("seconds").style.display = "none";  
+   document.getElementById("days").innerText = 0;  
+   document.getElementById("hours").innerText = 0;  
+   document.getElementById("minutes").innerText = minutes_left;  
+   document.getElementById("seconds").innerText = seconds_left;  
+   if (seconds_left == 59) {$("#minutes").fadeIn(400);}  
+   $("#seconds").fadeIn(400);  
+  }  
+   function make_timer() {  
+   {% if use_timer == true %}  
+   var timer_HTML = document.getElementById("time_container");  
+   $("#{{ location_id }}").after(timer_HTML);  
+   $("#time_container").fadeIn("slow");  
+   {% else %}  
+   var timer_HTML = document.getElementById("time_container");  
+   $("#{{ location_id }}").after(timer_HTML);  
+   {% endif %}  
+   }  
+  function make_price() {  
+   {% if product.compare_at_price_max != 0 or use_price == false %}  
+    // do nothing  
+    {% else %}  
+    var price = Math.ceil(1.45 * {{ product.price | money_without_currency }})-0.01;  
+    document.getElementById("{{ location_id }}").innerHTML+='<strike opacity=0.10; style=margin-left:3px;>$ '+price+'</strike>';  
+    {% endif %}   
+  }  
+  function make_stock() {  
+   var stock_count = document.getElementById("stock");  
+   $("#time_container").after(stock_count);  
+   $("#stock").fadeIn("slow");  
+  }  
+   function decrement_Q() {  
+   if ( Math.random() <= 0.3 ) { // update % of seconds  
+    document.getElementById("stock_number").style.color = "red";  
+    document.getElementById("stock_number").style.display="none";  
+    document.getElementById("stock_number").innerText--;  
+    document.getElementById("stock_number").style.display="inline";  
+    $("#stock_number").fadeIn("fast").css("display","inline-block");  
+    localStorage.setItem("starting_stock",document.getElementById("stock_number").innerText);  
+    if (document.getElementById("stock_number").innerText < 1) {  
+     document.getElementById("stock").style.display = "none";  
+     localStorage.setItem("starting_stock",null);  
+    }  
+   } else { // do nothing }  
+  }  
+  }  
+   window.onload = function() {  
+    make_price();  
+    make_timer();  
+    {% if use_stock_counter == true %}make_stock();document.getElementById("stock_number").innerText=starting_stock;{% else %}{% endif %}  
+    window.setInterval(function(){updateTimer();}, 1000);  
+    window.setInterval(function(){decrement_Q();}, 1000);  
+    window.setInterval(function(){flash_time();}, 2000);  
+   };  
+    function flash_time() {  
+     $("#timelabel").fadeOut("fast");  
+     $("#timelabel").fadeIn("slow");  
+    }  
+ </script>  
+ <style>  
+  div.time_container {  
+   float:left;  
+   width:23%;  
+   margin-left:1.5%;  
+   padding-bottom:4px;  
+   padding-top:6px;  
+   padding-left:1px;  
+   padding-right:1px;  
+  }  
+    div.time_container {  
+    border-style:groove;  
+    border-color:rgba(240,240,240,0.09);  
+    border-width:4px;  
+   }  
+   h4.resize-on-mobile { font-size:14px; }   
+ </style>  
+ <div id="time_container" class="text-center clearfix" style="display:none;"><br>  
+  <h4 class="resize-on-mobile" id="timelabel" style="color:red">Time left at this price:</h4>  
+  <div id="days_container" class="text-center clearfix time_container">  
+   <h4 id="days" class="time">-</h4><h4 class="resize-on-mobile" id="days_label">days</h4>  
+  </div>  
+  <div id="hours_container" class="text-center clearfix time_container">  
+  <h4 id="hours" class="time">-</h4><h4 class="resize-on-mobile" id="hours_label">hours</h4>  
+  </div>  
+  <div id="minutes_container" class="text-center clearfix time_container">  
+  <h4 id="minutes" class="time">-</h4><h4 class="resize-on-mobile" id="minutes_label">minutes</h4>  
+  </div>  
+  <div id="seconds_container" class="text-center clearfix time_container">  
+  <h4 id="seconds" class="time">-</h4><h4 class="resize-on-mobile" id="seconds_label">seconds</h4>  
+  </div>  
+ </div>  
+ {% comment %} <div id="stock" class="text-center clearfix" style="display:none;"><br>  
+  <h4 class="resize-on-mobile">There are <div id="stock_number" style="display:inline"></div> items left in stock!</h4>  
+ </div>   {% endcomment %}

@@ -1,0 +1,50 @@
+<style type="text/css">
+  .template-404 .title + * {
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-404 .title + * {
+      margin-top: 2rem;
+    }
+  }
+</style>
+ <script type="text/javascript">
+    
+   setTimeout(function() {
+     
+     if ($('.site-nav__color').hasClass("stuck")) {
+      console.log('sticky navigation broken applying fix');
+      var nav = $('.site-nav__color');
+      $(nav).removeClass( "stuck" );
+      $(nav).closest(".sticky-wrapper").height(38);
+     }
+
+   }, 1000);
+   
+   function errorPage() {
+        {% comment %}alert('404 page');{% endcomment %}
+        ga('send', {
+        hitType: 'event',
+        eventCategory: '404',
+        eventAction: '404PageView',
+      eventLabel: '404'
+      });
+        {% comment %}alert('Google event posted');{% endcomment %}
+        }
+        window.onload = errorPage;
+ </script>
+
+<div class="template-404 page-width page-margin center">
+  <p>
+    {{ 'templates.404.subtext' | t }}
+  </p>
+  <h1 class="title">
+    {{ 'templates.404.title' | t }}
+  </h1>
+  <p>{{ 'templates.404.paragraph' | t }}</p>
+  <a href="{{ routes.all_products_collection_url }}" class="button">
+    {{ 'general.continue_shopping' | t }}
+  </a>
+</div>
+<script id="esc-redirects-404-script" src="https://redirects.eastsideco.io/js/app.js"></script>

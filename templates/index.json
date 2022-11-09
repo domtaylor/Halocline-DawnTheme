@@ -1,0 +1,441 @@
+{
+  "sections": {
+    "1650370932b3c62d22": {
+      "type": "tooltips",
+      "blocks": {
+        "1650370932b6c8d23f-0": {
+          "type": "Tooltip",
+          "disabled": true,
+          "settings": {
+            "title": "HALOCLINE IRIS LONGER LENGTH SWIMSUIT - PINK OMBRE",
+            "product_featured_url": "https:\/\/www.halocline.co.uk\/products\/halocline-womens-iris-longer-length-swimsuit-pink-ombre",
+            "content": "£39.50",
+            "top": 70,
+            "left": 46
+          }
+        },
+        "1c1b47d2-c87c-47c8-ac20-fd7d1d7ebffb": {
+          "type": "Tooltip",
+          "disabled": true,
+          "settings": {
+            "title": "STELLA LONGER LENGTH CLIPBACK SWIMSUIT - ISOLA\/ROSE",
+            "product_featured_url": "https:\/\/www.halocline.co.uk\/products\/halocline-womens-stella-longer-length-clipback-swimsuit-isola-rose",
+            "content": "£39.50",
+            "top": 50,
+            "left": 67
+          }
+        }
+      },
+      "block_order": [
+        "1650370932b6c8d23f-0",
+        "1c1b47d2-c87c-47c8-ac20-fd7d1d7ebffb"
+      ],
+      "settings": {
+        "mobile_text": "FREE UK DELIVERY OVER £30",
+        "image": "shopify:\/\/shop_images\/Halocline-HomepageBanner-Aug-2020.jpg",
+        "collection_url": "shopify:\/\/collections\/ladies-swimwear",
+        "tooltip_color": "#ffffff",
+        "tooltip_background_color": "#921d72",
+        "tooltip_focus_color": "#f3f3f3",
+        "breakpoint": "768"
+      }
+    },
+    "1650380984f04b72c8": {
+      "type": "logo-list",
+      "blocks": {
+        "d334cb97-8d96-4b39-aa00-8bafefb50dc5": {
+          "type": "header",
+          "settings": {
+            "message": "Free UK Delivery Over £30"
+          }
+        },
+        "235bd7ff-543f-489c-abff-f0898f57aac1": {
+          "type": "header",
+          "settings": {
+            "message": "Free 30 Day UK Returns"
+          }
+        },
+        "60aa5fef-1cc3-43f1-b416-dcfe51ccd219": {
+          "type": "header",
+          "settings": {
+            "message": "Next Working Day Delivery"
+          }
+        },
+        "165038098436953c34-0": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/delivery_truck.png",
+            "link": "",
+            "text": "Free UK Delivery Over £30"
+          }
+        },
+        "165038098436953c34-1": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pickup-truck.png",
+            "link": "",
+            "text": "Free 30 Day UK Returns"
+          }
+        },
+        "165038098436953c34-2": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/stop-watch.png",
+            "link": "",
+            "text": "Next Working Day Delivery"
+          }
+        }
+      },
+      "block_order": [
+        "d334cb97-8d96-4b39-aa00-8bafefb50dc5",
+        "235bd7ff-543f-489c-abff-f0898f57aac1",
+        "60aa5fef-1cc3-43f1-b416-dcfe51ccd219",
+        "165038098436953c34-0",
+        "165038098436953c34-1",
+        "165038098436953c34-2"
+      ],
+      "settings": {
+        "logo_width": "200px",
+        "show_announcement_bar": true,
+        "autoplay": true,
+        "delay": "1500",
+        "colorBackground": "#ffffff",
+        "colorText": "#000"
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/POOLSIDE_TEST_5_1_bf20d608-92d1-491f-a4d4-842c36b86660.png",
+            "image_link": "https:\/\/www.halocline.co.uk\/collections\/ladies-swimwear",
+            "title": "WOMENS",
+            "text": "",
+            "link_label": "VIEW ALL",
+            "link": "https:\/\/www.halocline.co.uk\/collections\/ladies-swimwear"
+          }
+        },
+        "column2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Banner1.jpg",
+            "image_link": "https:\/\/www.halocline.co.uk\/collections\/mens-swimwear",
+            "title": "MENS",
+            "text": "",
+            "link_label": "VIEW ALL",
+            "link": "https:\/\/www.halocline.co.uk\/collections\/mens-swimwear"
+          }
+        },
+        "column3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/HC-241-compressed.jpg",
+            "image_link": "shopify:\/\/collections\/girls-swimwear",
+            "title": "GIRLS",
+            "text": "",
+            "link_label": "VIEW ALL",
+            "link": "https:\/\/www.halocline.co.uk\/collections\/boys-swimwear"
+          }
+        },
+        "d5ea966c-799d-4ed6-9e9d-8f6edf6b87fc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/accessories.png",
+            "image_link": "https:\/\/www.halocline.co.uk\/collections\/swimming-goggles",
+            "title": "ACCESSORIES",
+            "text": "",
+            "link_label": "VIEW ALL",
+            "link": "https:\/\/www.halocline.co.uk\/collections\/swimming-accessories"
+          }
+        }
+      },
+      "block_order": [
+        "column1",
+        "column2",
+        "column3",
+        "d5ea966c-799d-4ed6-9e9d-8f6edf6b87fc"
+      ],
+      "settings": {
+        "title": "SHOP BY CATEGORY",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "disabled": true,
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "SWIM",
+            "heading_second": "CHIC",
+            "heading_sub": "NEW",
+            "heading_sub_second": "STYLES",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "SHOP NOW",
+            "button_link_1": "shopify:\/\/collections\/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Size-12-Swimsuits-3.jpg",
+        "image_2": "shopify:\/\/shop_images\/Size-12-Swimsuits-4.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "BEST SELLERS",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our essentials for the pool or lido! Choose from a range of styles and colours!<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "ladies-swimwear",
+        "products_to_show": 6,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    },
+    "16504497763538704c": {
+      "type": "rich-text",
+      "blocks": {
+        "1650449776722383e4-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "HALOCLINE SWIMWEAR",
+            "heading_size": "h1"
+          }
+        },
+        "1650449776722383e4-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Welcome to the home of Halocline Swimwear UK, a new and exclusive swimwear brand offering great quality and excellent value for all the family. Halocline swimsuits are made of the finest Italian fabrics created with the best raw materials and high-tech, innovative manufacturing. Some unique benefits of our ranges include highly chlorine resistant swimwear for those daily swimmers, Lycra Xtra Life for added comfort, Econyl® recycled nylon yarn for a more sustainable swimwear option or PBT performance fabric for more extreme water sports.<\/p><p>All our Halocline swimsuits are designed in the UK and offer fabulous prints and a great colour palette for all tastes and activities. Our top selling Women’s Abstract Kneesuit is available in multiple prints and comes in an extensive plus size range. All our suits are designed with comfort, functionality and style to create a suit that looks and feels great but will also last.<\/p><p>Our various ranges cover children’s swimwear, men’s swimwear, shape control swimwear, plus size swimwear and sport swimwear all made using high quality fabrics, modern and fresh colour palettes and vibrant designs to suit all tastes and budgets.<\/p><p>Halocline also make a range of swimming goggles, both our children’s goggles and adult swimming goggles ranges over various styles and colours to cater for all needs.<\/p>"
+          }
+        },
+        "1650449776722383e4-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "READ OUR BLOG",
+            "button_link": "https:\/\/www.halocline.co.uk\/blogs\/news",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1650449776722383e4-0",
+        "1650449776722383e4-1",
+        "1650449776722383e4-2"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "1650446179b598f564": {
+      "type": "newsletter",
+      "blocks": {
+        "1650446179203502e9-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "10% Off Your First Order",
+            "heading_size": "h1"
+          }
+        },
+        "1650446179203502e9-1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Know about the latest product releases and offers first<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "1650446179203502e9-0",
+        "1650446179203502e9-1"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 44,
+        "padding_bottom": 0
+      }
+    },
+    "collage": {
+      "type": "collage",
+      "disabled": true,
+      "blocks": {
+        "collection-0": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "product": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "second_image": false
+          }
+        },
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-0",
+        "product",
+        "collection-1"
+      ],
+      "settings": {
+        "heading": "Multimedia collage",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "video": {
+      "type": "video",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1665845713097c6ec3": {
+      "type": "apps",
+      "blocks": {
+        "c7ab723b-a4dc-4b00-be84-e35db9685efc": {
+          "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/form-embed-block\/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": "WGzKFc"
+          }
+        }
+      },
+      "block_order": [
+        "c7ab723b-a4dc-4b00-be84-e35db9685efc"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "1650370932b3c62d22",
+    "1650380984f04b72c8",
+    "multicolumn",
+    "image_banner",
+    "rich_text",
+    "featured_collection",
+    "16504497763538704c",
+    "1650446179b598f564",
+    "collage",
+    "video",
+    "1665845713097c6ec3"
+  ]
+}

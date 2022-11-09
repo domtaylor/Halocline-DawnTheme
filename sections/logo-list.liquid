@@ -1,0 +1,269 @@
+{% comment %}Standrd logo list{% endcomment %}
+<div class="logo-bar">
+  {%- if section.blocks.size > 0 -%}
+    <ul>
+      {%- for block in section.blocks -%}
+        <li class="logo-bar__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">
+            {%- endif -%}
+
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | img_url: '100x100', scale: 2 | img_tag: block.settings.image.alt, width: '100', height: '100'  }}
+            {%- else -%}
+              {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+
+            {%- if block.settings.text != blank -%}
+              <span class="text-area text-center">{{ block.settings.text }}</span>
+            {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+
+{%- if  section.blocks.size > 0 and section.settings.show_announcement_bar -%}
+  <div class="hura-announcement-bar swiper-container">
+    <div class="hura-messages swiper-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="hura-message swiper-slide">{{block.settings.message}}</div>
+      {%- endfor -%}
+    </div>
+    <div class="hura-swiper-button swiper-button-prev"></div>
+    <div class="hura-swiper-button swiper-button-next"></div>
+  </div>
+  <p style="display:none!important;">Powered by
+    <a href="//www.huratips.com" target="_blank">HuraTips.Com</a>
+  </p>
+  <script src="//cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <script>
+    const swiper = new Swiper('.swiper-container', {
+    {%- if section.settings.autoplay %}
+        autoplay : {
+          delay: {{section.settings.delay}}
+        },
+      {%- endif -%}
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
+    });
+  </script>
+  <style>
+    .logo-bar {
+      display: flex;
+      margin: 0 auto;
+      align-content: space-evenly;
+      justify-content: center;
+      width: max-content;
+      transform: translateX(-10%);
+    }
+
+    .logo-bar__item {
+      display: inline-block;
+      width: auto;
+      margin: 0 50px;
+      max-width: {{ section.settings.logo_width }};
+    }
+
+    li.logo-bar__item:nth-child(2) > img {
+      transform: translateX(-10%);
+    }
+
+    li.logo-bar__item:nth-child(3) > img {
+      transform: translateY(-10%);
+    }
+
+    @media(max-width: 827px) {
+      .logo-bar__item {
+        width: auto;
+        margin-top: 0;
+        margin-right: 60px;
+      }
+      li.logo-bar__item {
+        max-height: 150px;
+      }
+      li.logo-bar__item:nth-child(1) > img {
+        transform: translateX(-10%);
+      }
+      li.logo-bar__item:nth-child(3) > img {
+        transform: translateX(-15%);
+      }
+      .logo-bar {
+        margin: 0 auto;
+        transform: translateX(15%);
+      }
+      .text-area.text-center:nth-child(2) > span {
+        left: 5%;
+      }
+      .text-center {
+        left: 0;
+      }
+    }
+
+    .text-center {
+      left: -25%;
+      width: max-content;
+    }
+
+    @media(max-width: 1044px) {
+      .logo-bar {
+        display: none !important;
+      }
+      .hura-message .swiper-slide .swiper-slide-duplicate {
+        width: max-content;
+      }
+      .hura-announcement-bar .hura-message {
+        padding: 0 !important;
+        margin-top: 40px;
+        margin-bottom: 46px;
+      }
+    }
+
+    @media(min-width: 1045px) {
+      .hura-announcement-bar {
+        display: none !important;
+      }
+    }
+    .hura-announcement-bar {
+      background: {{ section.settings.colorBackground}};
+      position: relative;
+      overflow: hidden;
+    }
+    .hura-announcement-bar .hura-message {
+      text-align: center;
+      color: {{ section.settings.colorText}};
+      padding: 0 7%;
+    }
+    .hura-announcement-bar .swiper-button-next:after,
+    .hura-announcement-bar .swiper-container-rtl .swiper-button-prev:after,
+    .hura-announcement-bar .swiper-button-prev:after,
+    .hura-announcement-bar .swiper-container-rtl .swiper-button-next:after {
+      font-size: 15px;
+      color: {{ section.settings.colorText}};
+    }
+    {%- if  section.blocks.size < 2 %}
+      .hura-announcement-bar .hura-swiper-button {
+        display: none !important;
+      }
+    {%- endif -%}
+  </style>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Logo List + Mobile Scroll",
+    "class": "index-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "select",
+        "id": "logo_width",
+        "label": "Logo width",
+        "default": "160px",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "100px"
+          },
+          {
+            "label": "Small",
+            "value": "125px"
+          },
+          {
+            "label": "Medium",
+            "value": "160px"
+          },
+          {
+            "label": "Large",
+            "value": "175px"
+          }, {
+            "label": "Extra Large",
+            "value": "200px"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show_announcement_bar",
+        "label": "Show"
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Autoplay"
+      },
+      {
+        "type": "text",
+        "id": "delay",
+        "label": "Delay between transitions (in ms)",
+        "default": "5000"
+      }, {
+        "type": "color",
+        "id": "colorBackground",
+        "label": "Background color",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "colorText",
+        "label": "Text color",
+        "default": "#000"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "image"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          }, {
+            "type": "html",
+            "id": "text",
+            "label": "Add text"
+          }
+        ]
+      }, {
+        "type": "header",
+        "name": "Message",
+        "settings": [
+          {
+            "id": "message",
+            "type": "textarea",
+            "label": "Message"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Logo list",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "logo_image"
+          }, {
+            "type": "logo_image"
+          }, {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

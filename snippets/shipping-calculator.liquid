@@ -1,0 +1,131 @@
+{% unless settings.shipping_calculator == 'Disabled' %}
+<div class="shipping-calculator-wrapper">
+<div id="shipping-calculator">
+  <h3>{{ settings.shipping_calculator_heading | default: 'Get shipping estimates' }}</h3>
+  <div>
+    <p class="field">
+      <label id="address_country_label">Select Country:</label>
+      <select id="address_country" name="country" >{{ country_option_tags }}</select>
+    </p>
+    <p class="field address_wrapper_province" style="display:none">
+      <label id="address_province_label">Select: Province</label>
+      <select id="address_province" name="province"></select>
+    </p>  
+    <p class="field">
+      <label for="address_zip">Enter Postal Code/Zip:</label>
+      <input type="text" id="address_zip" />
+    </p>
+    <p class="field">
+      <input type="button" class="get-rates btn" id="get-rates" value="{{ settings.shipping_calculator_submit_button_label | default: 'Calculate shipping' }}" />
+    </p>
+  </div>
+  <div id="shippingRatesOutput"></div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+
+  function populateProvincesSelect(provinces) {
+    //console.log (JSON.parse(provinces)); 
+    $('#address_province').find('option').remove().end();
+    JSON.parse(provinces).forEach(p => {
+      //console.log (p[0]);
+      $('#address_province').append('<option value="'+p[0]+'">'+p[0]+'</option>');
+    }); 
+    $('.address_wrapper_province').show();
+    
+  }
+  
+  
+  function outputShippingRates (shipping_rates) {
+    
+    $('#shippingRatesOutput').empty();
+
+    var activeCurrency = Shopify.currency["active"];
+
+    if (activeCurrency == 'AUD') {var useCurrency = '$'} 
+    else if (activeCurrency == 'CAD') {var useCurrency = '$'}
+    else if (activeCurrency == 'DKK') {var useCurrency = 'kr.'}
+    else if (activeCurrency == 'EUR') {var useCurrency = '€'}
+    else if (activeCurrency == 'GBP') {var useCurrency = '£'}
+    else if (activeCurrency == 'HKD') {var useCurrency = '$'}
+    else if (activeCurrency == 'JPY') {var useCurrency = '¥'}
+    else if (activeCurrency == 'NZD') {var useCurrency = '$'}
+    else if (activeCurrency == 'SGD') {var useCurrency = '$'}
+    else if (activeCurrency == 'USD') {var useCurrency = '$'};
+    
+    var infoHTML = "";
+    
+    $.each(shipping_rates, function(listItem, listInfo) {
+      infoHTML += "<p>" + listInfo.name + ": " + useCurrency + listInfo.price + "</p>";
+    });
+
+    $('#shippingRatesOutput').html(infoHTML);
+    
+    var replace = useCurrency + '0.00';
+    $('#shippingRatesOutput p').each(function() {
+      var text = $(this).text();
+      $(this).text(text.replace(replace, 'Free!')); 
+    });
+  }
+  
+  
+  function clearShippingForm () {
+    $('#shippingRatesOutput').empty();
+    $('#address_zip').val('');  
+  };
+
+
+  $('#address_country').on('change', function() {    
+    console.log('Country Changed');
+    clearShippingForm();
+    var provinces = $('option:selected', this).attr('data-provinces');
+    //console.log (provinces);
+    
+    if (provinces == '[]') {
+      console.log('no provinces');
+      $('.address_wrapper_province').hide();
+    } else {
+      populateProvincesSelect(provinces);
+    }
+
+  }); 
+ 
+  
+  $( "#get-rates" ).click(function() {
+    console.log ('Lets get some rates');
+    var country = $('#address_country').val();
+    var province = $('#address_province').val();
+    var zip = $('#address_zip').val();
+    
+    console.log (country + province + zip);
+    
+    if (province == null) {
+      var url = '/cart/shipping_rates.json?shipping_address[zip]='+zip+'&shipping_address[country]='+country+'';
+      console.log (url);
+    } else {
+      var url = '/cart/shipping_rates.json?shipping_address[zip]='+zip+'&shipping_address[country]='+country+'&shipping_address[province]='+province+'';
+      console.log (url);
+    }
+    
+    $.ajax({
+      type: "GET",
+      dataType: 'json',
+      url: url,
+      async: false,
+      contentType: "application/json; charset=utf-8",
+      success: function (json) {
+        console.log (json);
+        outputShippingRates(json.shipping_rates);              
+      },
+      error: function () {
+        $('#shippingRatesOutput').html('Error: Please check all fields are correct');
+      }
+    });
+  
+  });
+
+</script>
+
+{% endunless %}

@@ -1,0 +1,100 @@
+{% assign producttags = product.tags | downcase %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+<div class="product-single__tabs" id="product-tabs">
+    <div class="product-single__tabs-header">
+      <div class="product-single__tabs-button product-single__tabs-button--active" data-tab-header="details">
+        <h4>Details</h4>
+      </div>
+      <div class="product-single__tabs-button" data-tab-header="delivery">
+        <h4>Delivery<span> / Returns</span></h4>
+      </div>
+      <div class="product-single__tabs-button" data-tab-header="reviews">
+        {% if product.metafields.judgeme.badge == null or product.metafields.judgeme.badge contains "No reviews" %}<h4>Add Review</h4>{%- else -%}<h4>Reviews</h4>{% endif %}
+      </div>
+    </div>
+    <div class="product-single__tabs-content product-single__tabs-content--active">
+      <div class="product-single__tabs-text product-single__tabs-text--active" data-tab-content="details" id="tabDetails">
+        <div class="grid">
+          <div class="grid__item medium-up--one-third product-single__tabs-details-left" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="price" content="{{ current_variant.price | money_without_currency | remove: "," }}">
+            <p class="h2 product-single__vendor"><a href="{% if no_vendor %}#{% else %}{{ collections[vendor_name].url }}{% endif %}">{{ vendor_name }}</a></p>
+            <p class="h1 product-single__title">{{ product.title }}</p>
+            <p class="product-single__price product-single__price-{{ product.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+              {% if current_variant.compare_at_price > current_variant.price %}
+                  <span class="product-price__price product-price__price-{{ product.id }} product-price__sale product-price__sale--single">          
+                    <span id="ProductPrice-{{ product.id }}"><span itemprop="priceCurrency" content="GBP">&pound;</span><span>{{ current_variant.price | money_without_currency }}</span></span>
+                  </span>
+                  <span id="ComparePrice-{{ product.id }}">RRP {{ current_variant.compare_at_price | money }}</span>
+              {% else %}
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                <s id="ComparePrice-{{ product.id }}" class="hide">{{ current_variant.compare_at_price | money }}</s>
+                <span class="product-price__price product-price__price-{{ product.id }}">
+                  <span id="ProductPrice-{{ product.id }}"><span itemprop="priceCurrency" content="GBP">&pound;</span><span>{{ current_variant.price | money_without_currency }}</span></span>
+                  <span class="product-price__sale-label product-price__sale-label-{{ product.id }} hide">{{ 'products.product.on_sale' | t }}</span>
+                </span>
+              {% endif %}
+              <link itemprop="availability" href="https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"/>
+              <link itemprop="url" content="{{ shop.url }}{{ product.url }}"/>
+              <link itemprop="priceValidUntil" content="{{ "now" | date: "%s" | plus: 864000 | date: "%b %d, %Y" }}"/>
+              <span class="product-tabs-availability">{% if product.available %}In Stock{% else %}Out Of Stock{% endif %}</span>
+            </p>
+            <div class="product-single__details-meta">
+              <p>Brand: {{ product.vendor }}</p>
+              <p>Model: {{ product.title }}</p>
+              <p>SKU: <span class="current-sku-{{ product.id }}">{{ current_variant.sku }}</span></p>
+            </div>
+            
+            {% unless producttags contains "donotshipoutsideuk" %}{% if producttags contains "donotshipoutsideeu" %}<span class="product_tabs_shipping_restriction"><strong>Please note:</strong> This item cannot be shipped outside the European Union{% if multistore contains 'scuba' %} - <a href="/pages/shipping-outside-of-european-union">learn more</a>{% endif %}</span>{% endif %}{% endunless %}
+            {% if producttags contains "donotshipoutsideuk" %}<span class="product_tabs_shipping_restriction"><strong>Please note:</strong> This item cannot be shipped outside the United Kingdom</span>{% endif %}
+            
+            {%comment%}
+            <p class="h2 product-single__usefullinks">Useful Links:</p>
+            {% assign forlimit = 0 %}
+            {% for collection in product.collections %}
+              {% unless forlimit >= 5 %}
+              {% if collection.metafields.seorules.indexcollection or collection.metafields.seorules.indexagainstbrand  %}    
+                    {% unless collection.metafields.seorules.excludefromusefullinks %}
+                      <a href="{{collection.url}}">{{ collection.title }}</a><br />
+                      {% assign forlimit = forlimit | plus: 1 %}
+                {% endunless %}
+                {% endif %}           
+              {% endunless %}
+            {% endfor %}
+            {%endcomment%}
+
+          </div>
+          <div class="grid__item large-up--two-thirds product-single__details-desc rte" itemprop="description">
+            {{ product.description }}
+            {% if product.tags contains 'scuba' or product.type contains 'Masks' %}<br /><p>If you have longer hair and want to avoid  it becoming tangled in the mask strap or just want the strap to be more  comfortable remember to purchase a <a href="/products/simply-scuba-mask-strap-wrap">Strap  Wrapper</a>.</p>{% endif %}
+            {% if product.metafields.bfs_compare != blank %}<div class="abtest-b">{% include 'compare-data' with 'productPage' %}</div>{% endif %}
+            {% if product.tags contains 'over18' %}<a href="/pages/age-restricted-items"><img src="https://cdn.shopify.com/s/files/1/1767/1829/files/over18descriptionBanner.jpg" alt="You must be over 18 to purchase this product"></a>{% endif %}       
+            {% if product.type contains 'Swimwear' %}<strong>Want to learn more about caring for swimwear and washing instructions - <a href="/pages/swimwear-care" title="Swimwear Care">click here</a></strong>{% endif %}       
+            <div class="large-up-hide">
+            {% unless producttags contains "donotshipoutsideuk" %}{% if producttags contains "donotshipoutsideeu" %}<span class="product_tabs_shipping_restriction"><strong>Please note:</strong> This item cannot be shipped outside the European Union{% if multistore contains 'scuba' %} - <a href="/pages/shipping-outside-of-european-union">learn more</a>{% endif %}</span>{% endif %}{% endunless %}
+            {% if producttags contains "donotshipoutsideuk" %}<span class="product_tabs_shipping_restriction"><strong>Please note:</strong> This item cannot be shipped outside the United Kingdom</span>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-single__tabs-text" data-tab-content="delivery" id="tabDelivery">
+        <div class="rte">
+          {{ pages.delivery-information-summary.content }}
+        </div>
+      </div>
+      <div class="product-single__tabs-text" data-tab-content="reviews" id="tabReviews">
+        {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+      </div>
+    </div>
+  </div>
+{% unless youtubeVideoID == blank %}
+  <div class="product-single__tabs">
+    <div id="playYoutubeVideo" class="product-video_container">
+        <h4>Watch the video</h4>
+        <div class="video-wrapper__container">
+          <div class="video-wrapper">
+            <iframe width="853" height="480" src="https://www.youtube.com/embed/{{ youtubeVideoID }}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endunless %}

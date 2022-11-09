@@ -1,0 +1,155 @@
+
+<!-- This section looks to reorder the collection title if it has filters applied sets variable to allow reverse title -->
+{% assign firsttag = collections[current_tags.first].handle %}
+{% assign collection_title_reversed = 'animal,beige,blacks,blues,browns,cream,floral,greens,greys,metalics,multi,oranges,pinks,purples,reds,spots,stripes,white,yellows,size-size-6,size-size-8,size-size-10,size-size-12,size-size-14,size-size-16,size-size-18,size-size-20,size-extra-small,size-small,size-medium,size-large,size-extra-large' | split: ',' %}
+  
+  {% for collection in  collection_title_reversed %} 
+    {% if firsttag == collection %}
+      {% assign reversetitle = true %}
+    {% endif %}
+  {% endfor %}
+
+<!-- If collection has brand applied, sets variable to allow reverses title -->
+{% assign brandnames = collection.all_vendors | downcase | replace: ' ', '-' %}
+{% if brandnames contains collections[current_tags.first].handle %}
+  {% assign reversetitle = true %}
+{% endif %}
+
+<!-- If there are multiple filters applied, remove the above assign -->
+{% assign currenttags = current_tags | join: ',' %}
+  {% if currenttags contains ',' %}
+    {% assign reversetitle = false %}
+  {% endif %}
+
+<!-- Logic to assign the H1 -->
+{% if currenttags contains ',' %}
+  {% capture heading_title %}
+    {{collection.title}} - Filtered: {% for tag in current_tags %}{{collections[tag].title}}, {%endfor%}
+  {% endcapture %}
+{% else %}
+  {% unless current_tags.first == blank %}
+    {% if reversetitle == true %}
+      {% capture heading_title %}
+        {{collections[current_tags.first].title}} {{ collection.title}}
+      {% endcapture %}
+    {% else %}
+      {% capture heading_title %}
+        {{ collection.handle | replace: '-', ' '}} {{collections[current_tags.first].title}}
+      {% endcapture %}
+    {% endif %}
+  {% else %}
+    {% capture heading_title %}
+      {{collection.title}}
+    {% endcapture %}
+  {% endunless %}
+{% endif %}
+
+<header class="collection-header">
+  {% if section.settings.header_type == 'brand'%}
+      <div class="collection-hero__wrapper_fashion" style="background-image: url('{% if collection.image %}{{ collection.image | img_url: '1400x' }}{% else %}{{ header-fallback-image }}{% endif %}')">
+        <span>
+          <h1>{{ heading_title }}</h1>
+          {% if collection.metafields.collection.header-sub-text %}<h2>{{ collection.metafields.collection.header-sub-text }}</h2>{% endif %}
+        </span>
+      </div> 
+    {% else %}
+      <div class="collection-hero__wrapper medium-down--hide">
+        <div class="collection-hero">
+          <div class="collection-hero__image" style="background-image: url({{collectionbg}});" data-adaptive-background data-ab-css-background></div>
+          <div class="collection-hero__title-wrapper">
+            <h1 class="collection-hero__title page-width">{{ heading_title }}</h1>
+            {% if collection.description != blank %}
+              {% if current_tags.first == blank %}
+              <div class="rte collection-description page-width">
+                <div class="collection-description--truncated cddesktop">
+                  {% assign collectiondescription= collection.description %} 
+                  {% if multistore contains 'beach' %}
+                  {{ collectiondescription | truncate: 500 | strip_html }} {% if collectiondescription.size > 500 %}<span class="collection-description_open_truncation collection-hero-control">Read More</span>{% endif %}
+                  {% else %}
+                  {{ collectiondescription | truncate: 470 | strip_html }} {% if collectiondescription.size > 470 %}<span class="collection-description_open_truncation collection-hero-control">Read More</span>{% endif %}
+                  {% endif %}
+                </div>
+                <div class="collection-description--truncated cdmobile">
+                  {{ collectiondescription | truncate: 210 | strip_html }}  {% if collectiondescription.size > 210 %}<span class="collection-description_open_truncation collection-hero-control">Read More</span>{% endif %}
+                </div>
+                <div class="collection-description--full">
+                  {{ collection.description }} <span class="collection-description_close_truncation collection-hero-control">Close</span>
+                </div>
+              </div>
+              {% else %}
+              {% include 'collection-header-boilerplate' %}
+              {% endif %}
+            {% endif %}
+          </div>
+          <!--<div class="full-description">{% include 'icon-chevron-down' %}</div>-->
+        </div>
+      </div>
+    {% endif %}
+  {% include 'collection-custom-headers' %}
+  {% include 'collection-breadcrumb' %}
+
+  {% if section.settings.tags_enable or section.settings.sort_enable %}
+  {% unless multistore contains 'scuba' %}
+  <div class="filters-advice"><div class="filters-advice-text-wrapper"><span class="filters-advice-text">{% include 'icon-information' %}{{'collections.filters.filter_advice' | t}}</span></div></div>     
+  {% endunless %}
+    {% unless collection.handle contains 'new-in' %}
+    <div class="filters-toolbar-wrapper" id="filters-toolbar">
+        <div class="page-width filters-toolbar-sticky">
+          <div class="filters-toolbar">
+            <div class="grid grid--table">
+              <div class="grid__item large-up--three-quarters medium-up--seven-eighths medium-down--one-tenth mobile-toolbar__options">
+                <div class="medium-up--hide">{% include 'icon-filter' %}
+                  <a class="filter-toggle" href="#">
+                    <span class="filter-open-text show">Filter</span>
+                      <span class="filter-open-text hide">Close</span>
+                  </a>
+                </div>
+                {% include 'nh-filter-menu' %}
+                {% comment %}{% include 'filter-menu' %}{% endcomment %}
+              </div>
+              <div id="filter-sort" class="grid__item large-up--one-quarter medium-up--one-eighth text-right medium-down--one-tenth mobile-toolbar__options">
+                {% if section.settings.sort_enable %}
+                <div class="collection-sorter">
+                  {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                  <label for="SortBy" class="label--hidden">{{ 'collections.sorting.title' | t }}</label>
+                  <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort hidden">
+                    <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
+                    <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+                    <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+                    <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+                    <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
+                    <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
+                  </select>
+                  <input class="collection-header__default-sort" type="hidden" value="{{ collection.default_sort_by }}">
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pagination-toolbar">
+          <div class="page-width">
+            <p class="text-left collection-product__count">
+              {% include 'collection-count' with 'mobile' %}
+              {% if current_tags %} 
+                <span class="collection__filters-clear">
+                  {% if current_tags[1] %}{% assign multi_tags = true %}{% endif %}
+                  {% if multi_tags == true %}
+                    {% for tag in current_tags %}
+                       {{ collections[tag].title | link_to_remove_tag: tag}}
+                    {% endfor %}
+                    <a href="/collections/{{collection.handle}}">Clear All</a>
+                  {% else %}
+                    {% for tag in current_tags %}
+                      <a href="/collections/{{collection.handle}}">Clear {{collections[tag].title}}</a>
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endunless %}
+  {% endif %}
+</header>

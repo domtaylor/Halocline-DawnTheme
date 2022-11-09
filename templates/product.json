@@ -1,0 +1,300 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "1b17565a-bdbc-475a-a866-62f3ce2e176a": {
+          "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "68f780d2-e1db-4b29-864f-302dcb1727b8": {
+          "type": "shopify:\/\/apps\/wishlist\/blocks\/app-block\/7f9269b0-1b45-4d0c-8479-faf04f05d8ac",
+          "settings": {
+            "is_collection": false,
+            "is_text_only_col": false,
+            "iwish_add_txt": "Add To Wishlist",
+            "iwish_added_txt": "Added To Wishlist",
+            "outline_icon": "default_outline",
+            "filled_icon": "default_filled",
+            "iwish_add_icon_outline": "",
+            "iwish_added_icon_filled": "",
+            "iwish_theme_class": "",
+            "txt_font_size": 14,
+            "iwish_text_clr": "#000000",
+            "iwish_text_hover_clr": "#000000",
+            "variant_change_wrapper": "",
+            "variant_name_id_selector": "[name=id]",
+            "iwish_qvWrapper": "",
+            "iwish_qvBtn_click": "",
+            "iwish_custom_filters": "",
+            "filter_timeout": 1500
+          }
+        },
+        "48dd94ef-9607-40ae-b409-752f2b2d3d05": {
+          "type": "shopify:\/\/apps\/back-in-stock-customer-alerts\/blocks\/app-block\/bfa6a8c4-24e2-411a-9396-e35031b33f34",
+          "settings": {
+            "caption": "Email when available",
+            "font_size": 16,
+            "color": "#ffffff",
+            "background_color": "#000000",
+            "margin_top": 10,
+            "margin_bottom": 10,
+            "classes": "button button--full-width",
+            "style": "text-decoration:none"
+          }
+        },
+        "b91cf52c-e541-41d1-8a69-2757439b1fd3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<script type=\"text\/javascript\">\n      var _learnq = _learnq || [];\n      function addedToCart() {\n        fetch(`${\n          window.location.origin\n        }\/cart.js`).then(res => res.clone().json().then(data => {\n          var cart = {\n            total_price: data.total_price \/ 100,\n            $value: data.total_price \/ 100,\n            total_discount: data.total_discount,\n            original_total_price: data.original_total_price \/ 100,\n            items: data.items\n          }\n          if (item !== 'undefined') {\n            cart = Object.assign(cart, item)\n          }\n          _learnq.push(['track', 'Added to Cart', cart])\n        }))\n      }(function(ns, fetch) {\n        ns.fetch = function() {\n          const response = fetch.apply(this, arguments);\n          response.then(res => {\n            if (`${\n              window.location.origin\n            }\/cart\/add.js`.includes(res.url)) {\n              addedToCart()\n            }\n          });\n          return response\n        }\n      }(window, window.fetch))\n      $(document).ajaxComplete(function(event, request, settings) {\n        if (settings.url == \"\/cart\/add.js\") {\n          addedToCart()\n        }\n      })\n    <\/script>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        },
+        "76ede3d4-967a-47c1-8660-a6933cda031f": {
+          "type": "shopify:\/\/apps\/zoorix-cross-sell-bundles\/blocks\/zrx-prod-main\/51fffd07-f9df-4d6a-b901-6d14b243dcad",
+          "settings": {
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "collapsible-row-0": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Materials",
+            "icon": "leather",
+            "content": "<p>{{ product.metafields.descriptors.materials | metafield_tag }}<\/p>",
+            "page": ""
+          }
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "content": "<p>{{ product.metafields.descriptors.shipping | metafield_tag }}<\/p>",
+            "page": ""
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Care Instructions",
+            "icon": "heart",
+            "content": "<p>{{ product.metafields.descriptors.care_guide | metafield_tag }}<\/p>",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "06cb36ab-6a5e-4129-abbf-b47a7a1aaff4": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<script src=\"https:\/\/a.klaviyo.com\/media\/js\/onsite\/onsite.js\"><\/script>\n    <script type=\"text\/javascript\">\n      var klaviyo = klaviyo || [];\n      klaviyo.init({\n        account: \"XMZGka\",\n        list: 'WqLys7',\n        platform: \"shopify\",\n        include_on_tags: 'bis-hidden',\n        'BIS'\n      });\n      klaviyo.enable(\"backinstock\", {\n        trigger: {\n          product_page_text: \"Notify Me When Available\",\n          product_page_class: \"button button--full-width\", \/\/ changed\n          product_page_text_align: \"center\",\n          product_page_margin: \"0px\",\n          alternate_anchor: 'dawn-AddToCart' \/\/ new\n          replace_anchor: false\n        },\n        modal: {\n          headline: \"{product_name}\",\n          body_content: \"Register to receive a notification when this item comes back in stock.\",\n          email_field_label: \"Email\",\n          button_label: \"Notify me when available\",\n          subscription_success_label: \"You're in! We'll let you know when it's back.\",\n          footer_content: '',\n          additional_styles: \"@import url('https:\/\/fonts.googleapis.com\/css?family=Assistant');\",\n          font - family: 'Assistant',\n          'sans-serif',\n          drop_background_color: \"#000\",\n          background_color: \"#fff\",\n          text_color: \"#222\",\n          button_text_color: \"#fff\",\n          button_background_color: \"#439fdb\",\n          close_button_color: \"#ccc\",\n          error_background_color: \"#fcd6d7\",\n          error_text_color: \"#C72E2F\",\n          success_background_color: \"#d3efcd\",\n          success_text_color: \"#1B9500\"\n        }\n      });\n    <\/script>"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "1b17565a-bdbc-475a-a866-62f3ce2e176a",
+        "variant_picker",
+        "quantity_selector",
+        "68f780d2-e1db-4b29-864f-302dcb1727b8",
+        "48dd94ef-9607-40ae-b409-752f2b2d3d05",
+        "b91cf52c-e541-41d1-8a69-2757439b1fd3",
+        "buy_buttons",
+        "76ede3d4-967a-47c1-8660-a6933cda031f",
+        "description",
+        "collapsible-row-0",
+        "collapsible-row-1",
+        "collapsible-row-2",
+        "share",
+        "06cb36ab-6a5e-4129-abbf-b47a7a1aaff4"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "gallery_layout": "stacked",
+        "media_size": "large",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "image-with-text": {
+      "type": "image-with-text",
+      "disabled": true,
+      "blocks": {
+        "image-with-text-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
+          }
+        },
+        "image-with-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "image-with-text-0",
+        "image-with-text-1"
+      ],
+      "settings": {
+        "height": "small",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-2",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1651691016e87fafd1": {
+      "type": "apps",
+      "blocks": {
+        "408426c7-76fc-4cd6-aa5f-5f3539d042b5": {
+          "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "408426c7-76fc-4cd6-aa5f-5f3539d042b5"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column-0": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "Free Shipping",
+            "text": "<p>DELIVERY<\/p><p>We offer <strong>FREE <\/strong>UK standard delivery on orders over £30.<\/p><p>Standard UK delivery is £1.95 for orders under £30. You will receive your order 2 - 4 days from the date of despatch. Order by 3pm on a working weekday and we will aim to despatch the same day.<\/p><p>Next Working Day for the UK is £3.95.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "Hassle-Free Exchanges",
+            "text": "<p>RETURNS<\/p><p>You can return your Halocline items for any reason within 30 days from the date of despatch for a full refund (less postage costs).<\/p><p>A <strong>free<\/strong> Royal Mail tracked return label will be enclosed with your order (within the UK) for your convenience. Just repackage the item and attach the label then pop it in the nearest post box.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "column-1"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image-with-text",
+    "1651691016e87fafd1",
+    "multicolumn",
+    "product-recommendations"
+  ]
+}

@@ -1,0 +1,105 @@
+
+{% comment %}{% if google-tag-manager == 'ecommLayer' %}
+ <!--Start of Google dynamic remarketing code-->
+  {% if template contains 'product' %}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  <script type="text/javascript">
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      'ecomm_totalvalue': {{ product.price | money_without_currency | replace: ',', '' }},
+      'ecomm_prodid': ['shopify_GB_{{ product.id }}_{{ current_variant.id }}'],
+      'ecomm_pagetype': 'product'
+    });
+  </script>
+  {% endif %}
+  <!--End of Google dynamic remarketing code-->
+{% endif %}
+
+{% if google-tag-manager == 'dataLayer' %}
+
+{% assign commacurrency = 'no' %}
+{% if checkout.currency == 'EUR' or checkout.currency == 'DKK' or checkout.currency == 'JPY' %}
+{% assign commacurrency = 'yes' %}
+{% endif %}
+
+  <!-- Tag Manager -->
+  <script>
+    if( window.location.href.indexOf('thank_you')  > -1 ){
+         
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+          'currencyCode' : '{{checkout.currency}}',
+          'transactionId': '{{ checkout.order_name }}',
+          'transactionAffiliation': '',
+          'transactionTotal': '{% if commacurrency == 'yes' %}{{ checkout.total_price | money_without_currency | replace: ',', '.' }}{% else %}{{ checkout.total_price | money_without_currency | replace: ',', '' }}{% endif %}',
+          'transactionTax': '{% if commacurrency == 'yes' %}{{ checkout.tax_price| money_without_currency | replace: ',', '.' }}{% else %}{{ checkout.tax_price | money_without_currency | replace: ',', '' }}{% endif %}',
+          'transactionShipping': '{% if commacurrency == 'yes' %}{{ checkout.shipping_price | money_without_currency | replace: ',', '.' }}{% else %}{{ checkout.shipping_price  | money_without_currency }}{% endif %}',
+          'transactionProducts': [
+          {% for item in checkout.line_items %}
+          {
+            'sku': '{{ item.sku }}',
+            'name': '{{ item.title }}',
+            'category': '{{ item.product.type }}',
+            'price': '{% if commacurrency == 'yes' %}{{ item.price| money_without_currency | replace: ',', '.' }}{% else %}{{ item.price | money_without_currency | replace: ',', '' }}{% endif %}',
+            'quantity': '{{ item.quantity }}'
+          }
+          {% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      });
+    }
+  </script>
+{% endif %}
+{% else %}
+{% assign producttags = product.tags | downcase %}
+	{%- if productags contains 'beach' -%}
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-N2VNR8');</script>
+	<!-- End Google Tag Manager -->
+	{%- elsif producttags contains 'hike' -%}
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MF7K36');</script>
+	<!-- End Google Tag Manager -->
+	{%- elsif producttags contains 'scuba' -%}
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5RHPWG');</script>
+	<!-- End Google Tag Manager -->
+	{%- elsif producttags contains 'swim' -%}
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WFFQW8');</script>
+	<!-- End Google Tag Manager -->
+	{%- elsif producttags contains 'joseverin' -%}
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WPFCRKM');</script>
+	<!-- End Google Tag Manager -->
+	{%- elsif producttags contains 'halocline' -%}
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TZMWVQM');</script>
+	<!-- End Google Tag Manager -->
+	{%- endif -%}
+{% endif %} d
+{% endcomment %}

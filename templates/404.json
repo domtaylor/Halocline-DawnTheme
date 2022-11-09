@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+      }
+    },
+    "custom-404": {
+      "type": "custom-404",
+      "settings": {
+        "error_header": "",
+        "error_titletext": "",
+        "error_1_image": "shopify:\/\/shop_images\/Homepage.jpg",
+        "error_1_title": "RETURN TO OUR HOMEPAGE",
+        "error_1_text": "Explore our complete swimwear range.",
+        "error_1_button": "TAKE ME THERE",
+        "error_1_link": "https:\/\/www.halocline.co.uk\/",
+        "error_2_image": "shopify:\/\/shop_images\/Womens_b4ff589d-beab-4b53-ba2c-b8c98112068e.jpg",
+        "error_2_title": "SHOP WOMENS",
+        "error_2_text": "Shop womens swimwear at Halocline.",
+        "error_2_button": "SHOP WOMENS",
+        "error_2_link": "https:\/\/www.halocline.co.uk\/collections\/ladies-swimwear",
+        "error_3_image": "shopify:\/\/shop_images\/accessories.png",
+        "error_3_title": "SHOP MENS",
+        "error_3_text": "Shop mens swimwear at Halocline",
+        "error_3_button": "SHOP MENS",
+        "error_3_link": "https:\/\/www.halocline.co.uk\/collections\/mens-swimwear"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom-404"
+  ]
+}

@@ -1,0 +1,11 @@
+{% assign cartvalue = cart.total_price %}
+{% assign postagethreshold = settings.shipping_price_min | replace: '£', '' | replace: '.', '' %}
+{% assign postagethresholdnum = postagethreshold | plus: 0 %}
+{% assign amountleft = postagethreshold | minus: cartvalue | money %}
+{% if cartvalue == 0 %}
+Spend <strong>{{amountleft | strip_html}}</strong> to get free UK delivery
+{% elsif cartvalue < postagethresholdnum %}
+Spend <strong>{{amountleft | strip_html}}</strong> more to get free UK delivery
+{% else %}
+You are now eligible for free UK delivery 
+{% endif %}

@@ -1,0 +1,11 @@
+{% assign optimizeid = "GTM-5PHSLJ7" %}
+{% assign analyticsid = "UA-179319403-1" %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{analyticsid}}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '{{analyticsid}}', { 'optimize_id': '{{optimizeid}}'});
+</script>

@@ -1,0 +1,129 @@
+<div class="error-row--one-third page-width">
+  <div class="errorheader">
+    <h1>{{section.settings.error_header}}</h1>
+    <p>{{section.settings.error_titletext}}</p>
+  </div>
+  <div class="errorblock errorblock1">
+    <a href="{{section.settings.error_1_link}}"><img src="{{section.settings.error_1_image | img_url: '392x' }}" /></a>
+    <h3 class="fourOhfour-tt">{{section.settings.error_1_title}}</h3>
+    <p class="mobile-text">{{section.settings.error_1_text}}</p>
+    <a href="{{section.settings.error_1_link}}"><span class="btn-text">{{section.settings.error_1_button}}</span></a>
+  </div>
+  <div class="errorblock errorblock2">
+    <a href="{{section.settings.error_2_link}}"><img src="{{section.settings.error_2_image | img_url: '392x' }}" /></a>
+    <h3 class="fourOhfour-tt">{{section.settings.error_2_title}}</h3>
+    <p class="mobile-text">{{section.settings.error_2_text}}</p>
+    <a href="{{section.settings.error_2_link}}"><span class="btn-text">{{section.settings.error_2_button}}</span></a>
+  </div>
+  <div class="errorblock errorblock3">
+    <a href="{{section.settings.error_3_link}}"><img src="{{section.settings.error_3_image | img_url: '392x' }}" /></a>
+    <h3 class="fourOhfour-tt">{{section.settings.error_3_title}}</h3>
+    <p class="mobile-text">{{section.settings.error_3_text}}</p>
+    <a href="{{section.settings.error_3_link}}"><span class="btn-text">{{section.settings.error_3_button}}</span></a>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Error pages",
+    "settings": [
+      {
+        "type": "text",
+        "id": "error_header",
+        "label": "Header text for the 404 page"
+      },
+      {
+        "type": "text",
+        "id": "error_titletext",
+        "label": "Strapline for the 404 page, below title"
+      },
+      {
+        "type": "header",
+        "content": "Error Block 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "error_1_image",
+        "label": "Image for the first block"
+	  },
+      {
+        "type": "text",
+        "id": "error_1_title",
+        "label": "Title for the first block"
+      },
+      {
+        "type": "text",
+        "id": "error_1_text",
+        "label": "Text for the first block"
+      },
+      {
+        "type": "text",
+        "id": "error_1_button",
+        "label": "Button text for the first block"
+      },
+      {
+        "type": "text",
+        "id": "error_1_link",
+        "label": "Link destination for the first block"
+      },
+      {
+        "type": "header",
+        "content": "Error Block 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "error_2_image",
+        "label": "Image for the second block"
+	  },
+      {
+        "type": "text",
+        "id": "error_2_title",
+        "label": "Title for the second block"
+      },
+      {
+        "type": "text",
+        "id": "error_2_text",
+        "label": "Text for the second block"
+      },
+      {
+        "type": "text",
+        "id": "error_2_button",
+        "label": "Button text for the second block"
+      },
+      {
+        "type": "text",
+        "id": "error_2_link",
+        "label": "Link destination for the second block"
+      },
+      {
+        "type": "header",
+        "content": "Error Block 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "error_3_image",
+        "label": "Image for the third block"
+	  },
+      {
+        "type": "text",
+        "id": "error_3_title",
+        "label": "Title for the third block"
+      },
+      {
+        "type": "text",
+        "id": "error_3_text",
+        "label": "Text for the third block"
+      },
+      {
+        "type": "text",
+        "id": "error_3_button",
+        "label": "Button text for the third block"
+      },
+      {
+        "type": "text",
+        "id": "error_3_link",
+        "label": "Link destination for the third block"
+      }
+]
+}
+{% endschema %}

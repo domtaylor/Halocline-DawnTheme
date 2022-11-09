@@ -1,0 +1,12 @@
+/* 
+ESC Size Charts
+*/
+!function(a){a._empty=a._empty||[],a._beforeRender=a._beforeRender||[],a._afterRender=a._afterRender||[],a._renderedAll=a._renderedAll||[],a._overrideContent=a._overrideContent||function(a){return a.content},a.onEmpty=function(b){b&&a._empty.push(b)},a.onBeforeRender=function(b){b&&a._beforeRender.push(b)},a.onAfterRender=function(b){b&&a._afterRender.push(b)},a.onRenderedAll=function(b){b&&a._renderedAll.push(b)},a.overrideCellContent=function(b){a._overrideContent=b}}(window.eastsideco_sizeGuides||(window.eastsideco_sizeGuides={}));
+
+var SizeMatters = window.eastsideco_sizeGuides;
+SizeMatters.onRenderedAll(function(data) {  
+  // data: { container }
+  if ($(window).width() > 1099) {
+    $(".fashion-buy-tools-wrapper-left, .fashion-buy-tools-wrapper-right").css("width", "50%");
+  }
+});
